@@ -1,0 +1,95 @@
+﻿<FlowDocument
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    ColumnWidth="400"
+    FontFamily="宋体"
+    FontSize="14"
+    TextOptions.TextFormattingMode="Display">
+
+    <FlowDocument.Resources>
+        <Style TargetType="Figure">
+            <Setter Property="WrapDirection" Value="None" />
+        </Style>
+    </FlowDocument.Resources>
+
+
+    <Paragraph>
+        <Figure Width="1 content" HorizontalAnchor="ContentCenter">
+            <Paragraph>
+                <Run
+                    Name="PageTitle"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    FontSize="24"
+                    Text="学习工作页" />
+            </Paragraph>
+            <Paragraph />
+            <Paragraph />
+            <Paragraph />
+            <Paragraph />
+        </Figure>
+
+    </Paragraph>
+
+    <Paragraph>
+        <Figure
+            Width="200px"
+            BorderBrush="Gray"
+            BorderThickness="1"
+            HorizontalAnchor="ColumnLeft"
+            VerticalAnchor="ContentTop">
+            <BlockUIContainer>
+                <Image
+                    Name="HeaderImage"
+                    Width="200"
+                    Height="200"
+                    Source="C:\Users\chao\Pictures\IMG_58221.png" />
+            </BlockUIContainer>
+            <!--<Paragraph Foreground="Blue" TextAlignment="Center">
+                人脸识别头像
+            </Paragraph>-->
+        </Figure>
+
+
+        <Figure Margin="50,0" HorizontalAnchor="PageLeft">
+            <Paragraph />
+
+            <Paragraph>
+                <Run
+                    Name="RunUserID"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    Text="作业人员编号 ：****" />
+            </Paragraph>
+            <Paragraph />
+            <Paragraph>
+                <Run
+                    Name="RunUserName"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    Text="作业人员姓名 ：体验用户" />
+            </Paragraph>
+            <Paragraph />
+            <Paragraph>
+                <Run
+                    Name="RunUserGroup"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    Text="作业人员分组 ：****" />
+            </Paragraph>
+            <Paragraph />
+            <Paragraph>
+                <Run
+                    Name="RunWorkTime"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    Text="作业开始时间 ：****" />
+            </Paragraph>
+            <Paragraph />
+            <Paragraph>
+                <Run
+                    Name="RunMachineID"
+                    Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Background}"
+                    Text="工位机编号 ：WID0035" />
+            </Paragraph>
+            <Paragraph />
+        </Figure>
+
+    </Paragraph>
+
+</FlowDocument>

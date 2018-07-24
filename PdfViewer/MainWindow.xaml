@@ -1,0 +1,226 @@
+﻿<Window
+    x:Class="PdfViewer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:PdfViewer.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PdfViewer"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+    Title="WPF Pdf Viewer"
+    Width="1200"
+    Height="900"
+    AllowsTransparency="True"
+    Background="Transparent"
+    Topmost="False"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <converter:ImageSourceConverter x:Key="ImageSourceConverter" />
+
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="35" />
+            <Setter Property="Height" Value="35" />
+            <Setter Property="Margin" Value="15,5" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <!--
+                Width="35"
+                Height="35"
+                Margin="15,5"
+                VerticalAlignment="Bottom"
+            -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Border
+                                Name="border"
+                                Background="Transparent"
+                                CornerRadius="2">
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="30"
+                                        Direction="90"
+                                        Opacity="0.3"
+                                        Color="#bcdeff" />
+                                </Border.Effect>
+                            </Border>
+
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Image
+                                    Margin="5"
+                                    Source="{Binding Text, ElementName=tbContent, Converter={StaticResource ImageSourceConverter}}"
+                                    Stretch="Fill" />
+
+                                <TextBlock
+                                    x:Name="tbContent"
+                                    Text="{TemplateBinding Content}"
+                                    Visibility="Collapsed" />
+                            </StackPanel>
+
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#F1F9FF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="Transparent">
+                            <Path
+                                Name="path"
+                                Width="20"
+                                Height="20"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Data="M60,179.25 L99.75,140 60.5,100 69.75,90.25 110.25,130 150,90.25 160.25,100 120.25,140.25 160.25,180.25 150.25,190.5 110,150.5 70,190 z"
+                                Fill="{TemplateBinding Foreground}"
+                                Stretch="Fill"
+                                Stroke="#AAAAAA"
+                                StrokeThickness="0" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="path" Property="Fill" Value="#CCCCCC" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="path" Property="Opacity" Value="0.2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Background="Black" CornerRadius="3">
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Border
+                Height="50"
+                Background="#f0f0f0"
+                BorderThickness="0" />
+            <Button
+                Width="40"
+                Height="40"
+                Margin="5,0,25,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Click="Leave_Click"
+                Foreground="#474747"
+                Style="{StaticResource CloseButtonStyle}" />
+
+            <StackPanel
+                Margin="30,0"
+                HorizontalAlignment="Left"
+                Orientation="Horizontal">
+                <!--<Button
+                    Width="50"
+                    Margin="5,5"
+                    Click="FileButton_Click"
+                    Content="文件" />-->
+                <Border
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="White"
+                    BorderThickness="1" />
+
+                <Button
+                    Click="ZoomInButton_Click"
+                    Content="zoom_in"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="放大" />
+
+                <Button
+                    Click="ZoomOutButton_Click"
+                    Content="zoom_out"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="缩小" />
+
+                <Button
+                    Click="SinglePageButton_Click"
+                    Content="page"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="单页" />
+
+                <Button
+                    Click="FacingButton_Click"
+                    Content="page_double"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="双页" />
+
+                <Border
+                    Margin="10"
+                    Background="White"
+                    BorderBrush="White"
+                    BorderThickness="1" />
+
+                <Button
+                    Click="PageFirst_Click"
+                    Content="resultset_first"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="第一页" />
+                <Button
+                    Click="PagePrevious_Click"
+                    Content="resultset_previous"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="上一页" />
+
+                <TextBox
+                    Name="currentPage"
+                    Width="60"
+                    Height="30"
+                    Margin="10,0"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    PreviewKeyUp="currentPage_PreviewKeyUp" />
+                <TextBlock VerticalAlignment="Center" Text="/" />
+                <TextBlock
+                    Name="totalPage"
+                    Margin="10,0"
+                    VerticalAlignment="Center"
+                    Text="" />
+
+                <Button
+                    Click="PageNext_Click"
+                    Content="resultset_next"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="下一页" />
+                <Button
+                    Click="PageLast_Click"
+                    Content="resultset_last"
+                    Style="{StaticResource ButtonStyle}"
+                    ToolTip="最后一页" />
+
+
+
+            </StackPanel>
+
+
+            <Border Grid.Row="1" Background="#d3d3d3">
+                <mpp:MoonPdfPanel
+                    x:Name="moonPdfPanel"
+                    AllowDrop="True"
+                    Background="LightGray"
+                    PageMargin="0,2,4,2"
+                    PageRowDisplay="ContinuousPageRows"
+                    ViewType="SinglePage" />
+            </Border>
+        </Grid>
+    </Border>
+</Window>
