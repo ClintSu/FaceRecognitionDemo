@@ -33,5 +33,10 @@ namespace jg.WorkstationMachine
             main.ShowDialog();
             this.Show();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

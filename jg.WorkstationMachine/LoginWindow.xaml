@@ -39,7 +39,7 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontSize="24"
-                                Text="进入" />
+                                Text="进入实训" />
                         </Grid>
                         <ControlTemplate.Triggers>
                             <EventTrigger RoutedEvent="Loaded">
@@ -61,6 +61,49 @@
             </Setter>
         </Style>
 
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Padding" Value="20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="60" Height="60">
+
+                            <Image
+                                x:Name="image"
+                                Opacity="0.6"
+                                Source="pack://application:,,,/Resources/closeButton.png"
+                                Stretch="Fill">
+                                <Image.RenderTransform>
+                                    <RotateTransform CenterX="30" CenterY="30" />
+                                </Image.RenderTransform>
+                            </Image>
+
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="24" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                            RepeatBehavior="Forever"
+                                            Storyboard.TargetName="image"
+                                            Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)"
+                                            From="0"
+                                            To="360"
+                                            Duration="0:0:3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -98,6 +141,17 @@
                 Foreground="White"
                 Style="{StaticResource MainButtonStyle}" />
         </Grid>
+
+
+
+        <Button
+            Margin="200,150"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Click="Close_Click"
+            Foreground="White"
+            Style="{StaticResource CloseButtonStyle}" />
+
 
     </Grid>
 </Window>
