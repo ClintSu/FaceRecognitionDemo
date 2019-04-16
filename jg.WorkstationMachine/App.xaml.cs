@@ -60,10 +60,15 @@ namespace jg.WorkstationMachine
         {
             base.OnStartup(e);
 
+            //Model.Face face = new Model.Face();
 
-            //new Model.Face().GroupAdd(Globals.FaceGroupId);
-            //new Model.Face().GroupDelete("testGroup");
-
+            //for (int i = 2; i < 51; i++)
+            //{
+            //    var tt = "group" + i.ToString().PadLeft(2,'0');
+            //    face.GroupAdd(tt);
+            //    System.Threading.Thread.Sleep(100);
+            //}
+           
             Globals.UnitySocket = new SocketHelper(Globals.SocketIP, Globals.SocketPort);
             Globals.UnitySocket.StartServer();
         }

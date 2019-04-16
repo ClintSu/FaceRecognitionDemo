@@ -192,12 +192,9 @@
     <Resource Include="Resources\closeButton.png" />
     <Resource Include="Resources\face.jpg" />
     <None Include="Resources\face.bmp" />
-    <Resource Include="Resources\back.jpg" />
     <Resource Include="Resources\exitButton.png" />
     <Resource Include="Resources\login.jpg" />
     <Resource Include="Resources\loginButton.png" />
-    <Resource Include="Resources\login.png" />
-    <Resource Include="Resources\loginBackground.jpg" />
     <Resource Include="work.ico" />
     <Resource Include="Resources\Images\button-打印.png" />
     <Resource Include="Resources\Images\button-打印预览.png" />

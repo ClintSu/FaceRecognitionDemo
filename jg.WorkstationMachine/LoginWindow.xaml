@@ -129,7 +129,7 @@
             Name="grid"
             Width="300"
             Height="300"
-            Margin="300,20"
+            Margin="300,50"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="Transparent">
@@ -145,7 +145,7 @@
 
 
         <Button
-            Margin="200,150"
+            Margin="200,180"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
             Click="Close_Click"
